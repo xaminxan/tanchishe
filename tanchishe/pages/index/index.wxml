@@ -1,0 +1,37 @@
+<view class="container">
+  <view class="game-info">
+    <text class="score">得分：{{score}}</text>
+    <text class="high-score">最高分：{{highScore}}</text>
+  </view>
+  
+  <canvas 
+    type="2d" 
+    id="gameCanvas" 
+    class="game-canvas"
+    style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"
+  ></canvas>
+  
+  <view class="controls">
+    <button class="control-btn start-btn" bindtap="startGame">{{isPlaying ? '重新开始' : '开始游戏'}}</button>
+    <button class="control-btn pause-btn" bindtap="togglePause" disabled="{{!isPlaying}}">{{isPaused ? '继续' : '暂停'}}</button>
+  </view>
+  
+  <view class="direction-pad" wx:if="{{isPlaying && !isPaused}}">
+    <view class="pad-row">
+      <view class="pad-btn" bindtap="changeDirection" data-dir="up">▲</view>
+    </view>
+    <view class="pad-row">
+      <view class="pad-btn" bindtap="changeDirection" data-dir="left">◀</view>
+      <view class="pad-btn" bindtap="changeDirection" data-dir="down">▼</view>
+      <view class="pad-btn" bindtap="changeDirection" data-dir="right">▶</view>
+    </view>
+  </view>
+  
+  <view class="game-over" wx:if="{{gameOver}}">
+    <view class="game-over-content">
+      <text class="game-over-title">游戏结束!</text>
+      <text class="game-over-score">最终得分：{{score}}</text>
+      <button class="restart-btn" bindtap="startGame">再来一局</button>
+    </view>
+  </view>
+</view>

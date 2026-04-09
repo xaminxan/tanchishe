@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="game-info">
+    <text class="score">得分：{{score}}</text>
+    <text class="high-score">最高分：{{highScore}}</text>
+  </view>
+  
+  <canvas 
+    type="2d" 
+    id="gameCanvas" 
+    class="game-canvas"
+    style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"
+  ></canvas>
+  
+  <view class="controls">
+    <view class="control-row">
+      <button class="control-btn" bindtap="handleUp">↑</button>
+    </view>
+    <view class="control-row">
+      <button class="control-btn" bindtap="handleLeft">←</button>
+      <button class="control-btn" bindtap="handleStart">{{isPlaying ? '暂停' : (isGameOver ? '重新开始' : '开始游戏')}}</button>
+      <button class="control-btn" bindtap="handleRight">→</button>
+    </view>
+    <view class="control-row">
+      <button class="control-btn" bindtap="handleDown">↓</button>
+    </view>
+  </view>
+  
+  <view class="instructions">
+    <text>使用方向键或屏幕按钮控制蛇的移动</text>
+  </view>
+</view>
