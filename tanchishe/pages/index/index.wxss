@@ -1,0 +1,182 @@
+page {
+  width: 100%;
+  height: 100%;
+  background-color: #1a1a1a;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: #2c3e50;
+}
+
+.ui-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* 让点击穿透到画布，除了按钮 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.score-board {
+  padding: 20rpx 40rpx;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom-left-radius: 20rpx;
+  border-bottom-right-radius: 20rpx;
+  pointer-events: auto;
+}
+
+.score-label {
+  color: #bdc3c7;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.score-num {
+  color: #f1c40f;
+  font-size: 36rpx;
+  font-weight: 900;
+  margin: 0 10rpx;
+  text-shadow: 0 0 10rpx rgba(241, 196, 15, 0.5);
+}
+
+/* 遮罩层 */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+  z-index: 100;
+}
+
+.overlay-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30rpx;
+}
+
+.title {
+  font-size: 80rpx;
+  color: #2ecc71;
+  font-weight: 900;
+  text-shadow: 0 0 20rpx rgba(46, 204, 113, 0.6);
+  letter-spacing: 5rpx;
+}
+
+.title.game-over {
+  color: #e74c3c;
+  text-shadow: 0 0 20rpx rgba(231, 76, 60, 0.6);
+}
+
+.sub-title {
+  color: #ecf0f1;
+  font-size: 32rpx;
+  margin-top: 10rpx;
+}
+
+.start-btn, .restart-btn {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: white;
+  border: none;
+  padding: 20rpx 60rpx;
+  font-size: 36rpx;
+  border-radius: 50rpx;
+  box-shadow: 0 10rpx 20rpx rgba(46, 204, 113, 0.4);
+  margin-top: 20rpx;
+}
+
+.restart-btn {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  box-shadow: 0 10rpx 20rpx rgba(231, 76, 60, 0.4);
+  font-size: 28rpx;
+  padding: 15rpx 40rpx;
+}
+
+/* 虚拟按键区域 */
+.controls {
+  position: absolute;
+  bottom: 40rpx;
+  right: 40rpx;
+  display: flex;
+  align-items: flex-end;
+  gap: 40rpx;
+  pointer-events: auto;
+  z-index: 50;
+}
+
+.d-pad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.d-row {
+  display: flex;
+  gap: 10rpx;
+}
+
+.d-btn {
+  width: 100rpx;
+  height: 100rpx;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2rpx solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 40rpx;
+  backdrop-filter: blur(5px);
+  transition: all 0.1s;
+}
+
+.d-btn:active {
+  background: rgba(46, 204, 113, 0.6);
+  transform: scale(0.9);
+}
+
+.pause-btn {
+  width: 80rpx;
+  height: 80rpx;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2rpx solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 32rpx;
+  backdrop-filter: blur(5px);
+  margin-bottom: 10rpx;
+}
+
+.pause-btn:active {
+  background: rgba(241, 196, 15, 0.6);
+}

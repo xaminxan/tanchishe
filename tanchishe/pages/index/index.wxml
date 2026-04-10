@@ -1,37 +1,61 @@
 <view class="container">
-  <view class="game-info">
-    <text class="score">得分：{{score}}</text>
-    <text class="high-score">最高分：{{highScore}}</text>
-  </view>
-  
+  <!-- 游戏画布 -->
   <canvas 
     type="2d" 
     id="gameCanvas" 
     class="game-canvas"
-    style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"
+    bindtouchstart="onTouchStart"
+    bindtouchmove="onTouchMove"
+    bindtouchend="onTouchEnd"
   ></canvas>
-  
-  <view class="controls">
-    <button class="control-btn start-btn" bindtap="startGame">{{isPlaying ? '重新开始' : '开始游戏'}}</button>
-    <button class="control-btn pause-btn" bindtap="togglePause" disabled="{{!isPlaying}}">{{isPaused ? '继续' : '暂停'}}</button>
+
+  <!-- UI 层：分数和状态 -->
+  <view class="ui-layer">
+    <view class="score-board">
+      <text class="score-label">得分</text>
+      <text class="score-num">{{score}}</text>
+      <text class="score-label" style="margin-left: 20rpx;">最高</text>
+      <text class="score-num">{{highScore}}</text>
+    </view>
+    
+    <!-- 开始/结束 遮罩层 -->
+    <view class="overlay" wx:if="{{!isPlaying && !isPaused}}">
+      <view class="overlay-content">
+        <text class="title">贪吃蛇</text>
+        <text class="sub-title">点击开始游戏</text>
+        <button class="start-btn" bindtap="startGame">开始游戏</button>
+      </view>
+    </view>
+
+    <view class="overlay" wx:if="{{isPaused}}">
+      <view class="overlay-content">
+        <text class="title">已暂停</text>
+        <button class="start-btn" bindtap="togglePause">继续游戏</button>
+        <button class="restart-btn" bindtap="resetGame">重新开始</button>
+      </view>
+    </view>
+
+    <view class="overlay" wx:if="{{gameOver}}">
+      <view class="overlay-content">
+        <text class="title game-over">游戏结束</text>
+        <text class="sub-title">最终得分：{{score}}</text>
+        <button class="start-btn" bindtap="resetGame">再玩一次</button>
+      </view>
+    </view>
   </view>
-  
-  <view class="direction-pad" wx:if="{{isPlaying && !isPaused}}">
-    <view class="pad-row">
-      <view class="pad-btn" bindtap="changeDirection" data-dir="up">▲</view>
+
+  <!-- 虚拟方向键 (底部固定) -->
+  <view class="controls" wx:if="{{isPlaying && !gameOver && !isPaused}}">
+    <view class="d-pad">
+      <view class="d-row">
+        <view class="d-btn d-up" data-dir="up" bindtap="handleControl">▲</view>
+      </view>
+      <view class="d-row">
+        <view class="d-btn d-left" data-dir="left" bindtap="handleControl">◀</view>
+        <view class="d-btn d-down" data-dir="down" bindtap="handleControl">▼</view>
+        <view class="d-btn d-right" data-dir="right" bindtap="handleControl">▶</view>
+      </view>
     </view>
-    <view class="pad-row">
-      <view class="pad-btn" bindtap="changeDirection" data-dir="left">◀</view>
-      <view class="pad-btn" bindtap="changeDirection" data-dir="down">▼</view>
-      <view class="pad-btn" bindtap="changeDirection" data-dir="right">▶</view>
-    </view>
-  </view>
-  
-  <view class="game-over" wx:if="{{gameOver}}">
-    <view class="game-over-content">
-      <text class="game-over-title">游戏结束!</text>
-      <text class="game-over-score">最终得分：{{score}}</text>
-      <button class="restart-btn" bindtap="startGame">再来一局</button>
-    </view>
+    <view class="pause-btn" bindtap="togglePause">❚❚</view>
   </view>
 </view>

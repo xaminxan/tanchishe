@@ -1,5 +1,5 @@
 {
-  "description": "项目配置文件",
+  "description": "微信小程序贪吃蛇 - 绚丽版",
   "packOptions": {
     "ignore": [],
     "include": []
@@ -35,15 +35,23 @@
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
-    }
+    },
+    "compileWorklet": false,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true
   },
-  "compileType": "mini-program",
-  "libVersion": "2.19.4",
-  "appid": "wxd1b5c5d8e9f0a1b2",
-  "projectname": "snake-game",
+  "compileType": "miniprogram",
+  "libVersion": "3.15.2",
+  "appid": "wx52c6f0f3d11b5767",
+  "projectname": "snake-game-pro",
   "condition": {},
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  }
+  },
+  "simulatorPluginLibVersion": {}
 }
